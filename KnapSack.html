@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knapsack Assignment</title> 
+    <style>
+        body {
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9; 
+            color: #333; 
+            line-height: 1.6; 
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+        }
+
+        .container {
+            max-width: 600px; 
+            width: 100%; 
+            padding: 20px; 
+            background: #fff; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+            text-align: center; 
+        }
+
+        h1 {
+            margin-bottom: 20px; 
+            color: #444; 
+        }
+
+        table {
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-bottom: 20px; 
+        }
+
+        td, th {
+            border: 1px solid #ddd; 
+            text-align: center; 
+            padding: 12px; 
+        }
+
+        th {
+            background-color: #007bff; 
+            color: white; 
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; 
+        }
+
+        label {
+            display: block; 
+            margin-bottom: 5px; 
+            font-weight: bold; 
+        }
+
+        input[type="text"] {
+            width: 80%; 
+            padding: 10px;
+            margin-bottom: 15px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 50%;
+            padding: 10px; 
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            margin-bottom: 20px; 
+        }
+
+        button:hover {
+            background-color: #0056b3; 
+        }
+
+        #result {
+            font-size: 18px; 
+            font-weight: bold; 
+            margin-top: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Knapsack Problem</h1> 
+        <p>You can select up to 2 items, and the total weight must not exceed 5kg.</p> 
+        <p>Item Details:</p> 
+
+        <table>
+            <tr>
+                <th>Items</th>
+                <th>Weight</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Item 1</td>
+                <td>1 kg</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>Item 2</td>
+                <td>2 kg</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>Item 3</td>
+                <td>3 kg</td>
+                <td>40</td>
+            </tr>
+        </table>
+
+        <label for="item1">Do you want Item 1? (yes/no):</label>
+        <input type="text" id="item1" placeholder="yes or no">
+
+        <label for="item2">Do you want Item 2? (yes/no):</label>
+        <input type="text" id="item2" placeholder="yes or no">
+
+        <label for="item3">Do you want Item 3? (yes/no):</label>
+        <input type="text" id="item3" placeholder="yes or no">
+
+        <button onclick="calculateSelection()">Calculate</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateSelection() {
+            const weight1 = 1, value1 = 10;
+            const weight2 = 2, value2 = 15;
+            const weight3 = 3, value3 = 40;
+
+            const item1 = document.getElementById("item1").value.toLowerCase();
+            const item2 = document.getElementById("item2").value.toLowerCase();
+            const item3 = document.getElementById("item3").value.toLowerCase();
+
+            let totalWeight = 0, totalValue = 0, itemCount = 0;
+
+            if (item1 === "yes") {
+                totalWeight += weight1;
+                totalValue += value1;
+                itemCount++;
+            }
+            if (item2 === "yes") {
+                totalWeight += weight2;
+                totalValue += value2;
+                itemCount++;
+            }
+            if (item3 === "yes") {
+                totalWeight += weight3;
+                totalValue += value3;
+                itemCount++;
+            }
+
+            if (itemCount > 2 || totalWeight > 5) {
+                document.getElementById("result").innerText =
+                    "You cannot select more than 2 items or exceed the weight limit of 5kg.";
+            } else {
+                document.getElementById("result").innerText =
+                    `Total Weight: ${totalWeight}kg, Total Value: ${totalValue} pesos`;
+            }
+        }
+    </script>
+</body>
+</html>
+q
